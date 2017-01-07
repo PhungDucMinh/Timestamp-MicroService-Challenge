@@ -31,10 +31,11 @@ app.get('/:time', (req, res) => {
   var natural = moment.unix(unix).format("MMMM D, YYYY");
   var sendObj = {
     unix: unix,
-    natural: natural,
+    natural: natural
   };
   res.send(sendObj);
 });
+
 app.use('/users', users);
 
 // catch 404 and forward to error handler
