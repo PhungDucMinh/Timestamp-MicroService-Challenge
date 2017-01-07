@@ -4,10 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var moment = require('moment');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var indexTime = require('./routes/indexTime');
 
 var app = express();
 
@@ -24,19 +23,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.get('/:time', (req, res) => {
-  console.log('handle with params');
-  var time = req.params.time;
-  var unix = moment(time, 'MMMM D, YYYY').format('X');
-  var natural = moment.unix(unix).format("MMMM D, YYYY");
-  var sendObj = {
-    unix: unix,
-    natural: natural
-  };
-  res.send(sendObj);
-});
+app.get('/:time', indexTime);
 
-app.use('/users', users);
+//app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
