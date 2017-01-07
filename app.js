@@ -57,7 +57,7 @@ app.use(function(err, req, res, next) {
 });
 
 //module.exports = app;
-var port = (process.env.port == undefined ? 3000 : process.env.port);
+var port = 3000;
 app.listen(port, () => {
   console.log('Server is running at port: ' + port);
 });
